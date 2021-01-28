@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeptuneWeb", "NeptuneWeb\NeptuneWeb.csproj", "{58AB49CD-329B-4159-B8AF-A7FD811D0938}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeptuneTestDAL", "NeptuneTestDAL\NeptuneTestDAL.csproj", "{182B9797-CDB8-48E5-9522-C4074198FD55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeptuneDAL", "NeptuneDAL\NeptuneDAL.csproj", "{B01B9162-133A-4EDA-A7CE-9A75F51999C0}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NeptuneDatabase", "NeptuneDatabase\NeptuneDatabase.sqlproj", "{83292E3C-6904-4A6F-AA0D-4DAFAD84E51D}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://akashaggarwal.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = NeptuneWeb\\NeptuneWeb.csproj
+		SccProjectName1 = NeptuneWeb
+		SccLocalPath1 = NeptuneWeb
+		SccProjectUniqueName2 = NeptuneTestDAL\\NeptuneTestDAL.csproj
+		SccProjectName2 = NeptuneTestDAL
+		SccLocalPath2 = NeptuneTestDAL
+		SccProjectUniqueName3 = NeptuneDAL\\NeptuneDAL.csproj
+		SccProjectName3 = NeptuneDAL
+		SccLocalPath3 = NeptuneDAL
+		SccProjectUniqueName4 = NeptuneDatabase\\NeptuneDatabase.sqlproj
+		SccProjectName4 = NeptuneDatabase
+		SccLocalPath4 = NeptuneDatabase
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58AB49CD-329B-4159-B8AF-A7FD811D0938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58AB49CD-329B-4159-B8AF-A7FD811D0938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58AB49CD-329B-4159-B8AF-A7FD811D0938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58AB49CD-329B-4159-B8AF-A7FD811D0938}.Release|Any CPU.Build.0 = Release|Any CPU
+		{182B9797-CDB8-48E5-9522-C4074198FD55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{182B9797-CDB8-48E5-9522-C4074198FD55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{182B9797-CDB8-48E5-9522-C4074198FD55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{182B9797-CDB8-48E5-9522-C4074198FD55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B01B9162-133A-4EDA-A7CE-9A75F51999C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B01B9162-133A-4EDA-A7CE-9A75F51999C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B01B9162-133A-4EDA-A7CE-9A75F51999C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B01B9162-133A-4EDA-A7CE-9A75F51999C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83292E3C-6904-4A6F-AA0D-4DAFAD84E51D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83292E3C-6904-4A6F-AA0D-4DAFAD84E51D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83292E3C-6904-4A6F-AA0D-4DAFAD84E51D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{83292E3C-6904-4A6F-AA0D-4DAFAD84E51D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83292E3C-6904-4A6F-AA0D-4DAFAD84E51D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83292E3C-6904-4A6F-AA0D-4DAFAD84E51D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

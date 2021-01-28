@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>NeptuneDatabase</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{83292e3c-6904-4a6f-aa0d-4dafad84e51d}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>NeptuneDatabase</RootNamespace>
+    <AssemblyName>NeptuneDatabase</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Equipment.sql" />
+    <Build Include="dbo\Tables\ProjectInventory.sql" />
+    <Build Include="dbo\Tables\Schedules.sql" />
+    <Build Include="dbo\Tables\AssetTypes.sql" />
+    <Build Include="dbo\Tables\Containers.sql" />
+    <Build Include="dbo\Tables\Hours.sql" />
+    <Build Include="dbo\Tables\Projects.sql" />
+    <Build Include="dbo\Tables\Premise.sql" />
+    <Build Include="dbo\Tables\orders.sql" />
+    <Build Include="dbo\Tables\MasterKeyTable.sql" />
+    <Build Include="dbo\Tables\ProjectInstallers.sql" />
+    <Build Include="dbo\Tables\WorkOrders.sql" />
+    <Build Include="dbo\Tables\Devices.sql" />
+    <Build Include="dbo\Tables\LogType.sql" />
+    <Build Include="dbo\Tables\Log.sql" />
+    <Build Include="dbo\Tables\Installers.sql" />
+    <Build Include="dbo\Stored Procedures\load_wodata.sql" />
+    <Build Include="dbo\Stored Procedures\unload_wodata.sql" />
+    <Build Include="dbo\Stored Procedures\ordersFromView.sql" />
+    <Build Include="dbo\Stored Procedures\ordersToView.sql" />
+    <Build Include="dbo\Stored Procedures\unload_wodata_gps.sql" />
+    <Build Include="dbo\Stored Procedures\load_projectdata.sql" />
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\Device.sql" />
+    <Build Include="dbo\Tables\Account.sql" />
+    <Build Include="dbo\Tables\Project.sql" />
+    <Build Include="dbo\Tables\AccountMeter.sql" />
+    <Build Include="dbo\Tables\WorkOrder.sql" />
+    <Build Include="dbo\Tables\WorkOrderType.sql" />
+    <Build Include="dbo\Tables\Schedule.sql" />
+    <Build Include="dbo\Tables\ProjectHours.sql" />
+    <Build Include="dbo\Tables\Inventory.sql" />
+    <Build Include="dbo\Tables\InventoryDetail.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NeptuneDatabase.publish.xml" />
+  </ItemGroup>
+</Project>

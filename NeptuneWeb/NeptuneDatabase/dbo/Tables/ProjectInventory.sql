@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[ProjectInventory] (
+    [ProjectInventoryID] INT           NOT NULL,
+    [SerialNumber]       INT           NOT NULL,
+    [AssetType]          NVARCHAR (50) NOT NULL,
+    [Installer]          INT           NULL,
+    [IssueDate]          DATETIME      NULL,
+    [InstallDate]        DATETIME      NULL,
+    [CheckedIn]          BIT           NOT NULL,
+    [AuditFlag]          BIT           NOT NULL,
+    [CheckInDate]        DATETIME      NULL,
+    [Size]               NCHAR (10)    NULL,
+    [PrevInstaller]      INT           NULL,
+    [ContainerID]        INT           NULL,
+    [ProjectId]          INT           NULL,
+    [ProjectName]        NVARCHAR (50) NULL,
+    [CompanyInventoryID] INT           NULL,
+    [EquipmentID]        INT           NULL,
+    CONSTRAINT [PK_ProjectInventory] PRIMARY KEY CLUSTERED ([ProjectInventoryID] ASC),
+    CONSTRAINT [FK_ProjectInventory_AssetTypes] FOREIGN KEY ([AssetType]) REFERENCES [dbo].[AssetTypes] ([AssetType]),
+    CONSTRAINT [FK_ProjectInventory_Containers] FOREIGN KEY ([ContainerID]) REFERENCES [dbo].[Containers] ([ContainerID]),
+    CONSTRAINT [FK_ProjectInventory_Equipment] FOREIGN KEY ([EquipmentID]) REFERENCES [dbo].[Equipment] ([EquipmentID]),
+    CONSTRAINT [FK_ProjectInventory_Inventory] FOREIGN KEY ([CompanyInventoryID]) REFERENCES [dbo].[Inventory] ([InventoryID]),
+    CONSTRAINT [FK_ProjectInventory_Projects1] FOREIGN KEY ([ProjectName]) REFERENCES [dbo].[Projects] ([ProjectName])
+);
+

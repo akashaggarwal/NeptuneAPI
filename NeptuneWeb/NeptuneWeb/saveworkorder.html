@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="/Content/site.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">
+                   
+                </p>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+
+        <h2>Save Work Order</h2>
+
+        <section class="main-content clear-fix">
+            <form name="form1" method="post" enctype="multipart/form-data" action="api/WorkOrder">
+                <div>
+                    <label for="ScheduleID">ScheduleID</label>
+                    <input name="ScheduleID" type="text" value="1"/>
+                </div>
+                <div>
+                    <label for="DeviceID">DeviceID</label>
+                    <input name="DeviceID" type="text" value="1234"/>
+                </div>
+                <div>
+                    <label for="installerID">InstallerID</label>
+                    <input name="installerID" type="text" value="1"/>
+                </div>
+
+                <div>
+                    <label for="ProjectID">ProjectID</label>
+                    <input name="ProjectID" type="text" value="" />
+                </div>
+
+                <div>
+                    <label for="NewSerial">NewSerial</label>
+                    <input name="NewSerial" type="text" />
+                </div>
+                <div>
+                    <label for="CorrectSerial">CorrectSerial</label>
+                    <input name="CorrectSerial" type="text" />
+                </div>
+                <div>
+                    <label for="PrevRead">PrevRead</label>
+                    <input name="PrevRead" type="text" />
+                </div>
+                <div>
+                    <label for="OldRead">OldRead</label>
+                    <input name="OldRead" type="text" />
+                </div>
+                <div>
+                    <label for="NewRead">NewRead</label>
+                    <input name="NewRead" type="text" />
+                </div>
+
+                <div>
+                    <label for="AltRead">AltRead</label>
+                    <input name="AltRead" type="text" />
+                </div>
+                <div>
+                    <label for="NewRemoteID">NewRemoteID</label>
+                    <input name="NewRemoteID" type="text" />
+                </div>
+                <div>
+                    <label for="PlumbingTime">PlumbingTime</label>
+                    <input name="PlumbingTime" type="text" />
+                </div>
+                <div>
+                    <label for="WiringTime">WiringTime</label>
+                    <input name="WiringTime" type="text" />
+                </div>
+                <div>
+                    <label for="OldSize">OldSize</label>
+                    <input name="OldSize" type="text" />
+                </div>
+                <div>
+                    <label for="NewSize">NewSize</label>
+                    <input name="NewSize" type="text" />
+                </div>
+
+                <div>
+                    <label for="SkipReason">SkipReason</label>
+                    <input name="SkipReason" type="text" />
+                </div>
+                <div>
+                    <label for="JobComplete">JobComplete</label>
+                    <input name="JobComplete" type="text" value="0" />
+                    
+                </div>
+                <div>
+                    <label for="JobSkipped">JobSkipped</label>
+                    <input name="JobSkipped" type="text" value="0" />
+                    
+                </div>
+                <div>
+                    <label for="CompoundMeter">CompoundMeter</label>
+                    <input name="CompoundMeter" type="text" value="0" />
+                    
+                </div>
+
+                <div>
+                    <label for="OldPhoto">OldPhoto</label>
+                    <input name="OldPhoto" type="file" />
+                </div>
+                <div>
+                    <label for="OldPhotoGPS">OldPhotoGPS</label>
+                    <input name="OLD_GPS" type="text" value="39.112345,84.567890" />
+                </div>
+
+                <div>
+                    <label for="NewPhoto">NewPhoto</label>
+                    <input name="NewPhoto" type="file" />
+                </div>
+                <div>
+                    <label for="NewPhotoGPS">NewPhotoGPS</label>
+                    <input name="NEW_GPS" type="text" value="39.112345,84.567890" />
+                </div>
+
+                <div>
+                    <label for="Photo3">Photo3</label>
+                    <input name="Photo3" type="file" />
+                </div>
+                <div>
+                    <label for="Photo3GPS">Photo3GPS</label>
+                    <input name="P3_GPS" type="text" value="39.112345,84.567890" />
+                </div>
+
+                <div>
+                    <label for="Photo4">Photo4</label>
+                    <input name="Photo4" type="file" />
+                </div>
+                <div>
+                    <label for="Photo4GPS">Photo4GPS</label>
+                    <input name="P4_GPS" type="text" value="39.112345,84.567890" />
+                </div>
+
+
+                <div>
+                    <label for="Photo5">Photo5</label>
+                    <input name="Photo5" type="file" />
+                </div>
+                <div>
+                    <label for="Photo5GPS">Photo5GPS</label>
+                    <input name="P5_GPS" type="text" value="39.112345,84.567890" />
+                </div>
+                <div>
+                    <label for="Photo6">Photo6</label>
+                    <input name="Photo6" type="file" />
+                </div>
+                <div>
+                    <label for="Photo6GPS">Photo6GPS</label>
+                    <input name="P6_GPS" type="text" value="39.112345,84.567890" />
+                </div>
+
+                <div>
+                    <label for="Photo7">Photo7</label>
+                    <input name="Photo7" type="file" />
+                </div>
+                <div>
+                    <label for="Photo7GPS">Photo7GPS</label>
+                    <input name="P7_GPS" type="text" value="39.112345,84.567890" />
+                </div>
+
+                <div>
+                    <label for="Sig1">Sig1</label>
+                    <input name="Sig1" type="file" />
+                </div>
+
+               
+                <div>
+                    <label for="Notes">Notes</label>
+                    <input name="Notes" type="text" />
+                </div>
+
+                <div>
+                    <label for="JobSubmissionGPS">JobSubmissionGPS</label>
+                    <input name="SUBMIT_GPS" type="text" value="39.112345,84.567890" />
+                </div>
+
+                <div>
+                    <input type="submit" value="Submit" />
+                </div>
+            </form>
+        </section>
+    </div>
+
+</body>
+</html>

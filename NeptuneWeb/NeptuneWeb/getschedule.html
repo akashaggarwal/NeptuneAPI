@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="/Content/site.css" rel="stylesheet" />
+
+</head>
+
+
+    <body>
+
+
+        <h2>All Schedules</h2>
+        <form>
+            <div>
+                <label for="DeviceID">Device ID</label>
+                <input type="text" name="DeviceID" id="DeviceID" size="10" />
+            </div>
+            <div>
+                <label for="InstallerID">InstallerID</label>
+
+                <input type="text" name="InstallerID" id="InstallerID" size="5" />
+            </div>
+            <div>
+                <label for="InstallerID">ProjectID</label>
+
+                <input type="text" name="ProjectID" id="ProjectID" size="5" />
+            </div>
+
+            <div>&nbsp;</div>
+            <input type="button" value="Get Schedules" onclick="onSubmit();" />
+            <br />
+            <label id="message"></label>
+            <ul id="products" />
+
+
+
+        </form>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+        <script>
+            var uri = '/api/Schedule';
+
+            function onSubmit() {
+                // Send an AJAX request
+                var deviceid = $('#DeviceID').val();
+                var installerid = $('#InstallerID').val();
+                var projectid = $('#ProjectID').val();
+                $("#products").empty();
+                $("#message").empty();
+                $.getJSON(uri, { DeviceID: deviceid, InstallerID: installerid , ProjectID: projectid})
+
+                    .done(function (data) {
+                        $("#message").text(data.length + " records found");
+                        // On success, 'data' contains a list of products.
+                        $.each(data, function (key, item) {
+                            // Add a list item for the product.
+                            $('<li>', { text: formatItem(item) }).appendTo($('#products'));
+                        });
+                    })
+                    .fail(function (jqxhr, textStatus, error) {
+                        var err = textStatus + ", " + error;
+                        alert("Request Failed: " + err);
+                    });
+            };
+
+            function formatItem(item) {
+                return item.ScheduleID;
+            }
+
+        </script>
+    </body>
+</html>

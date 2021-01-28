@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NeptuneModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="DeviceId" />
+          </Key>
+          <Property Name="DeviceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Device" Type="nvarchar" MaxLength="80" />
+          <Property Name="UserId" Type="bigint" />
+          <Property Name="Note1" Type="nvarchar(max)" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedDt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Installers">
+          <Key>
+            <PropertyRef Name="InstallerID" />
+          </Key>
+          <Property Name="InstallerID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="HireDate" Type="date" />
+          <Property Name="Lat" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="Long" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="Password" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="image" />
+        </EntityType>
+        <EntityType Name="WorkOrder">
+          <Key>
+            <PropertyRef Name="ScheduleID" />
+          </Key>
+          <Property Name="ScheduleID" Type="int" Nullable="false" />
+          <Property Name="PremiseKey" Type="float" Nullable="false" />
+          <Property Name="ProjectInventoryID" Type="int" />
+          <Property Name="InstallerID" Type="int" />
+          <Property Name="OrderType" Type="nvarchar" MaxLength="20" />
+          <Property Name="InstallDate" Type="datetime" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="OldSerial" Type="int" />
+          <Property Name="NewSerial" Type="int" />
+          <Property Name="CorrectSerial" Type="int" />
+          <Property Name="PrevRead" Type="int" />
+          <Property Name="OldRead" Type="int" />
+          <Property Name="NewRead" Type="int" />
+          <Property Name="AltRead" Type="int" />
+          <Property Name="PlumbingTime" Type="int" />
+          <Property Name="WiringTime" Type="int" />
+          <Property Name="OldRemoteID" Type="int" />
+          <Property Name="NewRemoteID" Type="int" />
+          <Property Name="OldSize" Type="nvarchar" MaxLength="10" />
+          <Property Name="NewSize" Type="nvarchar" MaxLength="10" />
+          <Property Name="Latitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="Longitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="OldPhoto" Type="image" />
+          <Property Name="NewPhoto" Type="image" />
+          <Property Name="Photo3" Type="image" />
+          <Property Name="Sig1" Type="image" />
+          <Property Name="SkipReason" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobComplete" Type="bit" Nullable="false" />
+          <Property Name="JobSkipped" Type="bit" Nullable="false" />
+          <Property Name="JobReviewed" Type="bit" Nullable="false" />
+          <Property Name="JobInspected" Type="bit" Nullable="false" />
+          <Property Name="Dials" Type="int" />
+          <Property Name="CompoundMeter" Type="bit" />
+          <Property Name="DeviceID" Type="nvarchar" MaxLength="80" />
+          <Property Name="DateTimeModified" Type="datetime" Nullable="false" />
+          <Property Name="Photo4" Type="image" />
+          <Property Name="Photo5" Type="image" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Photo6" Type="image" />
+          <Property Name="Photo7" Type="image" />
+          <Property Name="OldPhotoLatitude" Type="float" />
+          <Property Name="OldPhotoLongitude" Type="float" />
+          <Property Name="NewPhotoLatitude" Type="float" />
+          <Property Name="NewPhotoLongitude" Type="float" />
+          <Property Name="Photo3Latitude" Type="float" />
+          <Property Name="Photo3Longitude" Type="float" />
+          <Property Name="Photo4Latitude" Type="float" />
+          <Property Name="Photo4Longitude" Type="float" />
+          <Property Name="Photo5Latitude" Type="float" />
+          <Property Name="Photo5Longitude" Type="float" />
+          <Property Name="Photo6Latitude" Type="float" />
+          <Property Name="Photo6Longitude" Type="float" />
+          <Property Name="Photo7Latitude" Type="float" />
+          <Property Name="Photo7Longitude" Type="float" />
+          <Property Name="JobSubmissionLatitude" Type="float" />
+          <Property Name="JobSubmissionLongitude" Type="float" />
+        </EntityType>
+        <Function Name="load_projectdata" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="deviceid" Type="varchar" Mode="In" />
+          <Parameter Name="installerid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="load_wodata" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="deviceid" Type="varchar" Mode="In" />
+          <Parameter Name="installerid" Type="int" Mode="In" />
+          <Parameter Name="projectid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="unload_wodata" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="deviceid" Type="varchar" Mode="In" />
+          <Parameter Name="ScheduleID" Type="int" Mode="In" />
+          <Parameter Name="installerID" Type="int" Mode="In" />
+          <Parameter Name="InstallDate" Type="date" Mode="In" />
+          <Parameter Name="NewSerial" Type="int" Mode="In" />
+          <Parameter Name="CorrectSerial" Type="int" Mode="In" />
+          <Parameter Name="PrevRead" Type="int" Mode="In" />
+          <Parameter Name="OldRead" Type="int" Mode="In" />
+          <Parameter Name="NewRead" Type="int" Mode="In" />
+          <Parameter Name="AltRead" Type="int" Mode="In" />
+          <Parameter Name="PlumbingTime" Type="int" Mode="In" />
+          <Parameter Name="WiringTime" Type="int" Mode="In" />
+          <Parameter Name="NewRemoteID" Type="int" Mode="In" />
+          <Parameter Name="OldSize" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewSize" Type="nvarchar" Mode="In" />
+          <Parameter Name="OldPhoto" Type="image" Mode="In" />
+          <Parameter Name="NewPhoto" Type="image" Mode="In" />
+          <Parameter Name="Photo3" Type="image" Mode="In" />
+          <Parameter Name="Photo4" Type="image" Mode="In" />
+          <Parameter Name="Photo5" Type="image" Mode="In" />
+          <Parameter Name="Sig1" Type="image" Mode="In" />
+          <Parameter Name="Notes" Type="nvarchar" Mode="In" />
+          <Parameter Name="SkipReason" Type="nvarchar" Mode="In" />
+          <Parameter Name="JobComplete" Type="bit" Mode="In" />
+          <Parameter Name="JobSkipped" Type="bit" Mode="In" />
+          <Parameter Name="CompoundMeter" Type="bit" Mode="In" />
+          <Parameter Name="Photo6" Type="image" Mode="In" />
+          <Parameter Name="Photo7" Type="image" Mode="In" />
+          <Parameter Name="OldPhotoLatitude" Type="float" Mode="In" />
+          <Parameter Name="OldPhotoLongitude" Type="float" Mode="In" />
+          <Parameter Name="NewPhotoLatitude" Type="float" Mode="In" />
+          <Parameter Name="NewPhotoLongitude" Type="float" Mode="In" />
+          <Parameter Name="Photo3Latitude" Type="float" Mode="In" />
+          <Parameter Name="Photo3Longitude" Type="float" Mode="In" />
+          <Parameter Name="Photo4Latitude" Type="float" Mode="In" />
+          <Parameter Name="Photo4Longitude" Type="float" Mode="In" />
+          <Parameter Name="Photo5Latitude" Type="float" Mode="In" />
+          <Parameter Name="Photo5Longitude" Type="float" Mode="In" />
+          <Parameter Name="Photo6Latitude" Type="float" Mode="In" />
+          <Parameter Name="Photo6Longitude" Type="float" Mode="In" />
+          <Parameter Name="Photo7Latitude" Type="float" Mode="In" />
+          <Parameter Name="Photo7Longitude" Type="float" Mode="In" />
+          <Parameter Name="JobSubmissionLatitude" Type="float" Mode="In" />
+          <Parameter Name="JobSubmissionLongitude" Type="float" Mode="In" />
+        </Function>
+        <Function Name="unload_wodata_gps" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="deviceid" Type="varchar" Mode="In" />
+          <Parameter Name="ProjectId" Type="int" Mode="In" />
+          <Parameter Name="ScheduleID" Type="int" Mode="In" />
+          <Parameter Name="installerID" Type="int" Mode="In" />
+          <Parameter Name="InstallDate" Type="date" Mode="In" />
+          <Parameter Name="NewSerial" Type="int" Mode="In" />
+          <Parameter Name="CorrectSerial" Type="int" Mode="In" />
+          <Parameter Name="PrevRead" Type="int" Mode="In" />
+          <Parameter Name="OldRead" Type="int" Mode="In" />
+          <Parameter Name="NewRead" Type="int" Mode="In" />
+          <Parameter Name="AltRead" Type="int" Mode="In" />
+          <Parameter Name="PlumbingTime" Type="int" Mode="In" />
+          <Parameter Name="WiringTime" Type="int" Mode="In" />
+          <Parameter Name="NewRemoteID" Type="int" Mode="In" />
+          <Parameter Name="OldSize" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewSize" Type="nvarchar" Mode="In" />
+          <Parameter Name="OldPhoto" Type="image" Mode="In" />
+          <Parameter Name="NewPhoto" Type="image" Mode="In" />
+          <Parameter Name="Photo3" Type="image" Mode="In" />
+          <Parameter Name="Photo4" Type="image" Mode="In" />
+          <Parameter Name="Photo5" Type="image" Mode="In" />
+          <Parameter Name="Sig1" Type="image" Mode="In" />
+          <Parameter Name="Notes" Type="nvarchar" Mode="In" />
+          <Parameter Name="SkipReason" Type="nvarchar" Mode="In" />
+          <Parameter Name="JobComplete" Type="bit" Mode="In" />
+          <Parameter Name="JobSkipped" Type="bit" Mode="In" />
+          <Parameter Name="CompoundMeter" Type="bit" Mode="In" />
+          <Parameter Name="Photo6" Type="image" Mode="In" />
+          <Parameter Name="Photo7" Type="image" Mode="In" />
+          <Parameter Name="OldPhotoLatitude" Type="float" Mode="In" />
+          <Parameter Name="OldPhotoLongitude" Type="float" Mode="In" />
+          <Parameter Name="NewPhotoLatitude" Type="float" Mode="In" />
+          <Parameter Name="NewPhotoLongitude" Type="float" Mode="In" />
+          <Parameter Name="Photo3Latitude" Type="float" Mode="In" />
+          <Parameter Name="Photo3Longitude" Type="float" Mode="In" />
+          <Parameter Name="Photo4Latitude" Type="float" Mode="In" />
+          <Parameter Name="Photo4Longitude" Type="float" Mode="In" />
+          <Parameter Name="Photo5Latitude" Type="float" Mode="In" />
+          <Parameter Name="Photo5Longitude" Type="float" Mode="In" />
+          <Parameter Name="Photo6Latitude" Type="float" Mode="In" />
+          <Parameter Name="Photo6Longitude" Type="float" Mode="In" />
+          <Parameter Name="Photo7Latitude" Type="float" Mode="In" />
+          <Parameter Name="Photo7Longitude" Type="float" Mode="In" />
+          <Parameter Name="JobSubmissionLatitude" Type="float" Mode="In" />
+          <Parameter Name="JobSubmissionLongitude" Type="float" Mode="In" />
+        </Function>
+        <EntityContainer Name="NeptuneModelStoreContainer">
+          <EntitySet Name="Device" EntityType="Self.Device" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Installers" EntityType="Self.Installers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkOrder" EntityType="Self.WorkOrder" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NeptuneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="NeptuneEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="GetSchedules" ReturnType="Collection(NeptuneModel.GetSchedules_Result)">
+            <Parameter Name="deviceid" Mode="In" Type="String" />
+            <Parameter Name="installerid" Mode="In" Type="Int32" />
+            <Parameter Name="projectid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SaveWorkOrder" ReturnType="Collection(NeptuneModel.SaveWorkOrder_Result)">
+            <Parameter Name="deviceid" Mode="In" Type="String" />
+            <Parameter Name="ProjectId" Mode="In" Type="Int32" />
+            <Parameter Name="ScheduleID" Mode="In" Type="Int32" />
+            <Parameter Name="installerID" Mode="In" Type="Int32" />
+            <Parameter Name="InstallDate" Mode="In" Type="DateTime" />
+            <Parameter Name="NewSerial" Mode="In" Type="Int32" />
+            <Parameter Name="CorrectSerial" Mode="In" Type="Int32" />
+            <Parameter Name="PrevRead" Mode="In" Type="Int32" />
+            <Parameter Name="OldRead" Mode="In" Type="Int32" />
+            <Parameter Name="NewRead" Mode="In" Type="Int32" />
+            <Parameter Name="AltRead" Mode="In" Type="Int32" />
+            <Parameter Name="PlumbingTime" Mode="In" Type="Int32" />
+            <Parameter Name="WiringTime" Mode="In" Type="Int32" />
+            <Parameter Name="NewRemoteID" Mode="In" Type="Int32" />
+            <Parameter Name="OldSize" Mode="In" Type="String" />
+            <Parameter Name="NewSize" Mode="In" Type="String" />
+            <Parameter Name="OldPhoto" Mode="In" Type="Binary" />
+            <Parameter Name="NewPhoto" Mode="In" Type="Binary" />
+            <Parameter Name="Photo3" Mode="In" Type="Binary" />
+            <Parameter Name="Photo4" Mode="In" Type="Binary" />
+            <Parameter Name="Photo5" Mode="In" Type="Binary" />
+            <Parameter Name="Sig1" Mode="In" Type="Binary" />
+            <Parameter Name="Notes" Mode="In" Type="String" />
+            <Parameter Name="SkipReason" Mode="In" Type="String" />
+            <Parameter Name="JobComplete" Mode="In" Type="Boolean" />
+            <Parameter Name="JobSkipped" Mode="In" Type="Boolean" />
+            <Parameter Name="CompoundMeter" Mode="In" Type="Boolean" />
+            <Parameter Name="Photo6" Mode="In" Type="Binary" />
+            <Parameter Name="Photo7" Mode="In" Type="Binary" />
+            <Parameter Name="OldPhotoLatitude" Mode="In" Type="Double" />
+            <Parameter Name="OldPhotoLongitude" Mode="In" Type="Double" />
+            <Parameter Name="NewPhotoLatitude" Mode="In" Type="Double" />
+            <Parameter Name="NewPhotoLongitude" Mode="In" Type="Double" />
+            <Parameter Name="Photo3Latitude" Mode="In" Type="Double" />
+            <Parameter Name="Photo3Longitude" Mode="In" Type="Double" />
+            <Parameter Name="Photo4Latitude" Mode="In" Type="Double" />
+            <Parameter Name="Photo4Longitude" Mode="In" Type="Double" />
+            <Parameter Name="Photo5Latitude" Mode="In" Type="Double" />
+            <Parameter Name="Photo5Longitude" Mode="In" Type="Double" />
+            <Parameter Name="Photo6Latitude" Mode="In" Type="Double" />
+            <Parameter Name="Photo6Longitude" Mode="In" Type="Double" />
+            <Parameter Name="Photo7Latitude" Mode="In" Type="Double" />
+            <Parameter Name="Photo7Longitude" Mode="In" Type="Double" />
+            <Parameter Name="JobSubmissionLatitude" Mode="In" Type="Double" />
+            <Parameter Name="JobSubmissionLongitude" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="GetProjects" ReturnType="Collection(NeptuneModel.GetProjects_Result)">
+            <Parameter Name="deviceid" Mode="In" Type="String" />
+            <Parameter Name="installerid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Devices" EntityType="NeptuneModel.Device" />
+          <EntitySet Name="Installers" EntityType="NeptuneModel.Installer" />
+          <EntitySet Name="WorkOrders" EntityType="NeptuneModel.WorkOrder" />
+        </EntityContainer>
+        <ComplexType Name="GetSchedules_Result">
+          <Property Type="String" Name="accountnumber" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="AltPhone" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Route" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="ScheduleDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ScheduleTime" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="String" Name="OrderType" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="OldSerial" Nullable="true" />
+          <Property Type="String" Name="OldSize" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="ScheduleID" Nullable="false" />
+          <Property Type="Int32" Name="PrevRead" Nullable="true" />
+          <Property Type="Decimal" Name="Latitude" Nullable="true" Precision="9" Scale="6" />
+          <Property Type="Decimal" Name="Longitude" Nullable="true" Precision="9" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="SaveWorkOrder_Result">
+          <Property Type="Int32" Name="RESULT" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetProjects_Result">
+        <Property Type="Int32" Name="ProjectId" Nullable="false" />
+          <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="DeviceId" />
+          </Key>
+          <Property Name="DeviceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Device1" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int64" />
+          <Property Name="Note1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Installer">
+          <Key>
+            <PropertyRef Name="InstallerID" />
+          </Key>
+          <Property Name="InstallerID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Precision="0" />
+          <Property Name="Lat" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="Long" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="Password" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WorkOrder">
+          <Key>
+            <PropertyRef Name="ScheduleID" />
+          </Key>
+          <Property Name="ScheduleID" Type="Int32" Nullable="false" />
+          <Property Name="PremiseKey" Type="Double" Nullable="false" />
+          <Property Name="ProjectInventoryID" Type="Int32" />
+          <Property Name="InstallerID" Type="Int32" />
+          <Property Name="OrderType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="InstallDate" Type="DateTime" Precision="3" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="OldSerial" Type="Int32" />
+          <Property Name="NewSerial" Type="Int32" />
+          <Property Name="CorrectSerial" Type="Int32" />
+          <Property Name="PrevRead" Type="Int32" />
+          <Property Name="OldRead" Type="Int32" />
+          <Property Name="NewRead" Type="Int32" />
+          <Property Name="AltRead" Type="Int32" />
+          <Property Name="PlumbingTime" Type="Int32" />
+          <Property Name="WiringTime" Type="Int32" />
+          <Property Name="OldRemoteID" Type="Int32" />
+          <Property Name="NewRemoteID" Type="Int32" />
+          <Property Name="OldSize" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NewSize" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="Longitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="OldPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NewPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Photo3" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Sig1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SkipReason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JobComplete" Type="Boolean" Nullable="false" />
+          <Property Name="JobSkipped" Type="Boolean" Nullable="false" />
+          <Property Name="JobReviewed" Type="Boolean" Nullable="false" />
+          <Property Name="JobInspected" Type="Boolean" Nullable="false" />
+          <Property Name="Dials" Type="Int32" />
+          <Property Name="CompoundMeter" Type="Boolean" />
+          <Property Name="DeviceID" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="DateTimeModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Photo4" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Photo5" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Photo6" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Photo7" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="OldPhotoLatitude" Type="Double" />
+          <Property Name="OldPhotoLongitude" Type="Double" />
+          <Property Name="NewPhotoLatitude" Type="Double" />
+          <Property Name="NewPhotoLongitude" Type="Double" />
+          <Property Name="Photo3Latitude" Type="Double" />
+          <Property Name="Photo3Longitude" Type="Double" />
+          <Property Name="Photo4Latitude" Type="Double" />
+          <Property Name="Photo4Longitude" Type="Double" />
+          <Property Name="Photo5Latitude" Type="Double" />
+          <Property Name="Photo5Longitude" Type="Double" />
+          <Property Name="Photo6Latitude" Type="Double" />
+          <Property Name="Photo6Longitude" Type="Double" />
+          <Property Name="Photo7Latitude" Type="Double" />
+          <Property Name="Photo7Longitude" Type="Double" />
+          <Property Name="JobSubmissionLatitude" Type="Double" />
+          <Property Name="JobSubmissionLongitude" Type="Double" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NeptuneModelStoreContainer" CdmEntityContainer="NeptuneEntities">
+          <FunctionImportMapping FunctionImportName="GetSchedules" FunctionName="NeptuneModel.Store.load_wodata">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="NeptuneModel.GetSchedules_Result">
+                <ScalarProperty Name="accountnumber" ColumnName="accountnumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="AltPhone" ColumnName="AltPhone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Route" ColumnName="Route" />
+                <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+                <ScalarProperty Name="ScheduleTime" ColumnName="ScheduleTime" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="OldSerial" ColumnName="OldSerial" />
+                <ScalarProperty Name="OldSize" ColumnName="OldSize" />
+                <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+                <ScalarProperty Name="PrevRead" ColumnName="PrevRead" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SaveWorkOrder" FunctionName="NeptuneModel.Store.unload_wodata_gps">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NeptuneModel.SaveWorkOrder_Result">
+                <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetProjects" FunctionName="NeptuneModel.Store.load_projectdata" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NeptuneModel.GetProjects_Result">
+              <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Devices">
+            <EntityTypeMapping TypeName="NeptuneModel.Device">
+              <MappingFragment StoreEntitySet="Device">
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="Note1" ColumnName="Note1" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Device1" ColumnName="Device" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Installers">
+            <EntityTypeMapping TypeName="NeptuneModel.Installer">
+              <MappingFragment StoreEntitySet="Installers">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="InstallerID" ColumnName="InstallerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkOrders">
+            <EntityTypeMapping TypeName="NeptuneModel.WorkOrder">
+              <MappingFragment StoreEntitySet="WorkOrder">
+                <ScalarProperty Name="JobSubmissionLongitude" ColumnName="JobSubmissionLongitude" />
+                <ScalarProperty Name="JobSubmissionLatitude" ColumnName="JobSubmissionLatitude" />
+                <ScalarProperty Name="Photo7Longitude" ColumnName="Photo7Longitude" />
+                <ScalarProperty Name="Photo7Latitude" ColumnName="Photo7Latitude" />
+                <ScalarProperty Name="Photo6Longitude" ColumnName="Photo6Longitude" />
+                <ScalarProperty Name="Photo6Latitude" ColumnName="Photo6Latitude" />
+                <ScalarProperty Name="Photo5Longitude" ColumnName="Photo5Longitude" />
+                <ScalarProperty Name="Photo5Latitude" ColumnName="Photo5Latitude" />
+                <ScalarProperty Name="Photo4Longitude" ColumnName="Photo4Longitude" />
+                <ScalarProperty Name="Photo4Latitude" ColumnName="Photo4Latitude" />
+                <ScalarProperty Name="Photo3Longitude" ColumnName="Photo3Longitude" />
+                <ScalarProperty Name="Photo3Latitude" ColumnName="Photo3Latitude" />
+                <ScalarProperty Name="NewPhotoLongitude" ColumnName="NewPhotoLongitude" />
+                <ScalarProperty Name="NewPhotoLatitude" ColumnName="NewPhotoLatitude" />
+                <ScalarProperty Name="OldPhotoLongitude" ColumnName="OldPhotoLongitude" />
+                <ScalarProperty Name="OldPhotoLatitude" ColumnName="OldPhotoLatitude" />
+                <ScalarProperty Name="Photo7" ColumnName="Photo7" />
+                <ScalarProperty Name="Photo6" ColumnName="Photo6" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Photo5" ColumnName="Photo5" />
+                <ScalarProperty Name="Photo4" ColumnName="Photo4" />
+                <ScalarProperty Name="DateTimeModified" ColumnName="DateTimeModified" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="CompoundMeter" ColumnName="CompoundMeter" />
+                <ScalarProperty Name="Dials" ColumnName="Dials" />
+                <ScalarProperty Name="JobInspected" ColumnName="JobInspected" />
+                <ScalarProperty Name="JobReviewed" ColumnName="JobReviewed" />
+                <ScalarProperty Name="JobSkipped" ColumnName="JobSkipped" />
+                <ScalarProperty Name="JobComplete" ColumnName="JobComplete" />
+                <ScalarProperty Name="SkipReason" ColumnName="SkipReason" />
+                <ScalarProperty Name="Sig1" ColumnName="Sig1" />
+                <ScalarProperty Name="Photo3" ColumnName="Photo3" />
+                <ScalarProperty Name="NewPhoto" ColumnName="NewPhoto" />
+                <ScalarProperty Name="OldPhoto" ColumnName="OldPhoto" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="NewSize" ColumnName="NewSize" />
+                <ScalarProperty Name="OldSize" ColumnName="OldSize" />
+                <ScalarProperty Name="NewRemoteID" ColumnName="NewRemoteID" />
+                <ScalarProperty Name="OldRemoteID" ColumnName="OldRemoteID" />
+                <ScalarProperty Name="WiringTime" ColumnName="WiringTime" />
+                <ScalarProperty Name="PlumbingTime" ColumnName="PlumbingTime" />
+                <ScalarProperty Name="AltRead" ColumnName="AltRead" />
+                <ScalarProperty Name="NewRead" ColumnName="NewRead" />
+                <ScalarProperty Name="OldRead" ColumnName="OldRead" />
+                <ScalarProperty Name="PrevRead" ColumnName="PrevRead" />
+                <ScalarProperty Name="CorrectSerial" ColumnName="CorrectSerial" />
+                <ScalarProperty Name="NewSerial" ColumnName="NewSerial" />
+                <ScalarProperty Name="OldSerial" ColumnName="OldSerial" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="InstallDate" ColumnName="InstallDate" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="InstallerID" ColumnName="InstallerID" />
+                <ScalarProperty Name="ProjectInventoryID" ColumnName="ProjectInventoryID" />
+                <ScalarProperty Name="PremiseKey" ColumnName="PremiseKey" />
+                <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

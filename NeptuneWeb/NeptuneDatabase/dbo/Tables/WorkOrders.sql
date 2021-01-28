@@ -1,0 +1,71 @@
+﻿CREATE TABLE [dbo].[WorkOrders] (
+    [ScheduleID]         INT             NOT NULL,
+    [PremiseKey]         FLOAT (53)      NOT NULL,
+    [ProjectInventoryID] INT             NULL,
+    [InstallerID]        INT             NULL,
+    [OrderType]          NVARCHAR (20)   NULL,
+    [InstallDate]        DATETIME        NULL,
+    [StartTime]          DATETIME        NULL,
+    [EndTime]            DATETIME        NULL,
+    [OldSerial]          INT             NULL,
+    [NewSerial]          INT             NULL,
+    [CorrectSerial]      INT             NULL,
+    [PrevRead]           INT             NULL,
+    [OldRead]            INT             NULL,
+    [NewRead]            INT             NULL,
+    [AltRead]            INT             NULL,
+    [PlumbingTime]       INT             NULL,
+    [WiringTime]         INT             NULL,
+    [OldRemoteID]        INT             NULL,
+    [NewRemoteID]        INT             NULL,
+    [OldSize]            NVARCHAR (10)   NULL,
+    [NewSize]            NVARCHAR (10)   NULL,
+    [Latitude]           DECIMAL (9, 6)  NULL,
+    [Longitude]          DECIMAL (9, 6)  NULL,
+    [OldPhoto]           IMAGE           NULL,
+    [NewPhoto]           IMAGE           NULL,
+    [Photo3]             IMAGE           NULL,
+    [Sig1]               IMAGE           NULL,
+    [SkipReason]         NVARCHAR (50)   NULL,
+    [JobComplete]        BIT             CONSTRAINT [DF_Order_JobComplete] DEFAULT ((0)) NOT NULL,
+    [JobSkipped]         BIT             CONSTRAINT [DF_Order_JobSkipped] DEFAULT ((0)) NOT NULL,
+    [JobReviewed]        BIT             CONSTRAINT [DF_Order_JobReviewed] DEFAULT ((0)) NOT NULL,
+    [JobInspected]       BIT             CONSTRAINT [DF_Order_JobInspected] DEFAULT ((0)) NOT NULL,
+    [Dials]              INT             NULL,
+    [CompoundMeter]      BIT             NULL,
+    [DeviceID]           NVARCHAR (80)   NULL,
+    [DateTimeModified]   DATETIME        DEFAULT (getdate()) NOT NULL,
+    [Photo4]             IMAGE           NULL,
+    [Photo5]             IMAGE           NULL,
+    [Notes]              NVARCHAR (1000) NULL,
+    [Photo6] IMAGE NULL, 
+    [Photo7] IMAGE NULL, 
+      [OldPhotoLatitude] FLOAT CONSTRAINT [DF_WorkOrder_OldPhotoLatitude] DEFAULT ((0)) NOT NULL,
+	[OldPhotoLongitude] FLOAT CONSTRAINT [DF_WorkOrder_OldPhotoLongitude] DEFAULT ((0)) NOT NULL,
+	
+	[NewPhotoLatitude] FLOAT CONSTRAINT [DF_WorkOrder_NewPhotoLatitude] DEFAULT ((0)) NOT NULL,
+	[NewPhotoLongitude] FLOAT CONSTRAINT [DF_WorkOrder_NewPhotoLongitude] DEFAULT ((0)) NOT NULL,
+	
+	[Photo3Latitude] FLOAT CONSTRAINT [DF_WorkOrder_Photo3Latitude] DEFAULT ((0)) NOT NULL,
+	[Photo3Longitude] FLOAT CONSTRAINT [DF_WorkOrder_Photo3Longitude] DEFAULT ((0)) NOT NULL,
+	
+	[Photo4Latitude] FLOAT CONSTRAINT [DF_WorkOrder_Photo4Latitude] DEFAULT ((0)) NOT NULL,
+	[Photo4Longitude] FLOAT CONSTRAINT [DF_WorkOrder_Photo4Longitude] DEFAULT ((0)) NOT NULL,
+	
+	[Photo5Latitude] FLOAT CONSTRAINT [DF_WorkOrder_Photo5Latitude] DEFAULT ((0)) NOT NULL,
+	[Photo5Longitude] FLOAT CONSTRAINT [DF_WorkOrder_Photo5Longitude] DEFAULT ((0)) NOT NULL,
+	
+	[Photo6Latitude] FLOAT CONSTRAINT [DF_WorkOrder_Photo6Latitude] DEFAULT ((0)) NOT NULL,
+	[Photo6Longitude] FLOAT CONSTRAINT [DF_WorkOrder_Photo6Longitude] DEFAULT ((0)) NOT NULL,
+	
+	[Photo7Latitude] FLOAT CONSTRAINT [DF_WorkOrder_Photo7Latitude] DEFAULT ((0)) NOT NULL,
+	[Photo7Longitude] FLOAT CONSTRAINT [DF_WorkOrder_Photo7Longitude] DEFAULT ((0)) NOT NULL,
+    
+	[JobSubmissionLatitude] FLOAT CONSTRAINT [DF_WorkOrder_JobLatitude] DEFAULT ((0)) NOT NULL,
+	[JobSubmissionLongitude] FLOAT CONSTRAINT [DF_WorkOrder_JobLongitude] DEFAULT ((0)) NOT NULL,
+  
+
+    CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED ([ScheduleID] ASC),
+    CONSTRAINT [FK_WorkOrders_Schedules] FOREIGN KEY ([ScheduleID]) REFERENCES [dbo].[Schedules] ([ScheduleID])
+);
+
